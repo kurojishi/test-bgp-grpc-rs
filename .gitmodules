@@ -1,0 +1,3 @@
+[submodule "proto/gobgp"]
+	path = proto/gobgp
+	url = https://github.com/osrg/gobgp
