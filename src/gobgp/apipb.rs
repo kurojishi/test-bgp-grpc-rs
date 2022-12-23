@@ -3613,3 +3613,1498 @@ pub mod gobgp_api_client {
         }
     }
 }
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OriginAttribute {
+    #[prost(uint32, tag = "1")]
+    pub origin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AsSegment {
+    #[prost(enumeration = "as_segment::Type", tag = "1")]
+    pub r#type: i32,
+    #[prost(uint32, repeated, tag = "2")]
+    pub numbers: ::prost::alloc::vec::Vec<u32>,
+}
+/// Nested message and enum types in `AsSegment`.
+pub mod as_segment {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Type {
+        Unknown = 0,
+        AsSet = 1,
+        AsSequence = 2,
+        AsConfedSequence = 3,
+        AsConfedSet = 4,
+    }
+    impl Type {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Type::Unknown => "UNKNOWN",
+                Type::AsSet => "AS_SET",
+                Type::AsSequence => "AS_SEQUENCE",
+                Type::AsConfedSequence => "AS_CONFED_SEQUENCE",
+                Type::AsConfedSet => "AS_CONFED_SET",
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AsPathAttribute {
+    #[prost(message, repeated, tag = "1")]
+    pub segments: ::prost::alloc::vec::Vec<AsSegment>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NextHopAttribute {
+    #[prost(string, tag = "1")]
+    pub next_hop: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MultiExitDiscAttribute {
+    #[prost(uint32, tag = "1")]
+    pub med: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LocalPrefAttribute {
+    #[prost(uint32, tag = "1")]
+    pub local_pref: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AtomicAggregateAttribute {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AggregatorAttribute {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(string, tag = "2")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CommunitiesAttribute {
+    #[prost(uint32, repeated, tag = "1")]
+    pub communities: ::prost::alloc::vec::Vec<u32>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OriginatorIdAttribute {
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClusterListAttribute {
+    #[prost(string, repeated, tag = "1")]
+    pub ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+/// IPAddressPrefix represents the NLRI for:
+/// - AFI=1, SAFI=1
+/// - AFI=2, SAFI=1
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IpAddressPrefix {
+    #[prost(uint32, tag = "1")]
+    pub prefix_len: u32,
+    #[prost(string, tag = "2")]
+    pub prefix: ::prost::alloc::string::String,
+}
+/// LabeledIPAddressPrefix represents the NLRI for:
+/// - AFI=1, SAFI=4
+/// - AFI=2, SAFI=4
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LabeledIpAddressPrefix {
+    #[prost(uint32, repeated, tag = "1")]
+    pub labels: ::prost::alloc::vec::Vec<u32>,
+    #[prost(uint32, tag = "2")]
+    pub prefix_len: u32,
+    #[prost(string, tag = "3")]
+    pub prefix: ::prost::alloc::string::String,
+}
+/// EncapsulationNLRI represents the NLRI for:
+/// - AFI=1, SAFI=7
+/// - AFI=2, SAFI=7
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncapsulationNlri {
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RouteDistinguisherTwoOctetAsn {
+    #[prost(uint32, tag = "1")]
+    pub admin: u32,
+    #[prost(uint32, tag = "2")]
+    pub assigned: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RouteDistinguisherIpAddress {
+    #[prost(string, tag = "1")]
+    pub admin: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "2")]
+    pub assigned: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RouteDistinguisherFourOctetAsn {
+    #[prost(uint32, tag = "1")]
+    pub admin: u32,
+    #[prost(uint32, tag = "2")]
+    pub assigned: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EthernetSegmentIdentifier {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+/// EVPNEthernetAutoDiscoveryRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=1
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnEthernetAutoDiscoveryRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "2")]
+    pub esi: ::core::option::Option<EthernetSegmentIdentifier>,
+    #[prost(uint32, tag = "3")]
+    pub ethernet_tag: u32,
+    #[prost(uint32, tag = "4")]
+    pub label: u32,
+}
+/// EVPNMACIPAdvertisementRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=2
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnmacipAdvertisementRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "2")]
+    pub esi: ::core::option::Option<EthernetSegmentIdentifier>,
+    #[prost(uint32, tag = "3")]
+    pub ethernet_tag: u32,
+    #[prost(string, tag = "4")]
+    pub mac_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub ip_address: ::prost::alloc::string::String,
+    #[prost(uint32, repeated, tag = "6")]
+    pub labels: ::prost::alloc::vec::Vec<u32>,
+}
+/// EVPNInclusiveMulticastEthernetTagRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=3
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnInclusiveMulticastEthernetTagRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(uint32, tag = "2")]
+    pub ethernet_tag: u32,
+    #[prost(string, tag = "3")]
+    pub ip_address: ::prost::alloc::string::String,
+}
+/// EVPNEthernetSegmentRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=4
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnEthernetSegmentRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "2")]
+    pub esi: ::core::option::Option<EthernetSegmentIdentifier>,
+    #[prost(string, tag = "3")]
+    pub ip_address: ::prost::alloc::string::String,
+}
+/// EVPNIPPrefixRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=5
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnipPrefixRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(message, optional, tag = "2")]
+    pub esi: ::core::option::Option<EthernetSegmentIdentifier>,
+    #[prost(uint32, tag = "3")]
+    pub ethernet_tag: u32,
+    #[prost(string, tag = "4")]
+    pub ip_prefix: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "5")]
+    pub ip_prefix_len: u32,
+    #[prost(string, tag = "6")]
+    pub gw_address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "7")]
+    pub label: u32,
+}
+/// EVPNIPMSIRoute represents the NLRI for:
+/// - AFI=25, SAFI=70, RouteType=9
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EvpnipmsiRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(uint32, tag = "2")]
+    pub ethernet_tag: u32,
+    #[prost(message, optional, tag = "3")]
+    pub rt: ::core::option::Option<::prost_types::Any>,
+}
+/// SRPolicyNLRI represents the NLRI for:
+/// - AFI=1, SAFI=73
+/// - AFI=2, SAFI=73
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SrPolicyNlri {
+    /// length field carries the length of NLRI portion expressed in bits
+    #[prost(uint32, tag = "1")]
+    pub length: u32,
+    /// distinguisher field carries 4-octet value uniquely identifying the policy
+    /// in the context of <color, endpoint> tuple.
+    #[prost(uint32, tag = "2")]
+    pub distinguisher: u32,
+    /// color field carries 4-octet value identifying (with the endpoint) the
+    /// policy.  The color is used to match the color of the destination
+    /// prefixes to steer traffic into the SR Policy
+    #[prost(uint32, tag = "3")]
+    pub color: u32,
+    /// endpoint field identifies the endpoint of a policy.  The Endpoint may
+    /// represent a single node or a set of nodes (e.g., an anycast
+    /// address).  The Endpoint is an IPv4 (4-octet) address or an IPv6
+    /// (16-octet) address according to the AFI of the NLRI.
+    #[prost(bytes = "vec", tag = "4")]
+    pub endpoint: ::prost::alloc::vec::Vec<u8>,
+}
+/// LabeledVPNIPAddressPrefix represents the NLRI for:
+/// - AFI=1, SAFI=128
+/// - AFI=2, SAFI=128
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LabeledVpnipAddressPrefix {
+    #[prost(uint32, repeated, tag = "1")]
+    pub labels: ::prost::alloc::vec::Vec<u32>,
+    /// One of:
+    /// - TwoOctetAsSpecificExtended
+    /// - IPv4AddressSpecificExtended
+    /// - FourOctetAsSpecificExtended
+    #[prost(message, optional, tag = "2")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(uint32, tag = "3")]
+    pub prefix_len: u32,
+    #[prost(string, tag = "4")]
+    pub prefix: ::prost::alloc::string::String,
+}
+/// RouteTargetMembershipNLRI represents the NLRI for:
+/// - AFI=1, SAFI=132
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RouteTargetMembershipNlri {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    /// One of:
+    /// - TwoOctetAsSpecificExtended
+    /// - IPv4AddressSpecificExtended
+    /// - FourOctetAsSpecificExtended
+    #[prost(message, optional, tag = "2")]
+    pub rt: ::core::option::Option<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlowSpecIpPrefix {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(uint32, tag = "2")]
+    pub prefix_len: u32,
+    #[prost(string, tag = "3")]
+    pub prefix: ::prost::alloc::string::String,
+    /// IPv6 only
+    #[prost(uint32, tag = "4")]
+    pub offset: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlowSpecMac {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(string, tag = "2")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlowSpecComponentItem {
+    /// Operator for Numeric type, Operand for Bitmask type
+    #[prost(uint32, tag = "1")]
+    pub op: u32,
+    #[prost(uint64, tag = "2")]
+    pub value: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlowSpecComponent {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(message, repeated, tag = "2")]
+    pub items: ::prost::alloc::vec::Vec<FlowSpecComponentItem>,
+}
+/// FlowSpecNLRI represents the NLRI for:
+/// - AFI=1, SAFI=133
+/// - AFI=2, SAFI=133
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FlowSpecNlri {
+    /// One of:
+    /// - FlowSpecIPPrefix
+    /// - FlowSpecMAC
+    /// - FlowSpecComponent
+    #[prost(message, repeated, tag = "1")]
+    pub rules: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+/// VPNFlowSpecNLRI represents the NLRI for:
+/// - AFI=1, SAFI=134
+/// - AFI=2, SAFI=134
+/// - AFI=25, SAFI=134
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct VpnFlowSpecNlri {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetAS
+    /// - RouteDistinguisherIPAddressAS
+    /// - RouteDistinguisherFourOctetAS
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    /// One of:
+    /// - FlowSpecIPPrefix
+    /// - FlowSpecMAC
+    /// - FlowSpecComponent
+    #[prost(message, repeated, tag = "2")]
+    pub rules: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+/// OpaqueNLRI represents the NLRI for:
+/// - AFI=16397, SAFI=241
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OpaqueNlri {
+    #[prost(bytes = "vec", tag = "1")]
+    pub key: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsNodeDescriptor {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(uint32, tag = "2")]
+    pub bgp_ls_id: u32,
+    #[prost(uint32, tag = "3")]
+    pub ospf_area_id: u32,
+    #[prost(bool, tag = "4")]
+    pub pseudonode: bool,
+    #[prost(string, tag = "5")]
+    pub igp_router_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsLinkDescriptor {
+    #[prost(uint32, tag = "1")]
+    pub link_local_id: u32,
+    #[prost(uint32, tag = "2")]
+    pub link_remote_id: u32,
+    #[prost(string, tag = "3")]
+    pub interface_addr_ipv4: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub neighbor_addr_ipv4: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub interface_addr_ipv6: ::prost::alloc::string::String,
+    #[prost(string, tag = "6")]
+    pub neighbor_addr_ipv6: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsPrefixDescriptor {
+    #[prost(string, repeated, tag = "1")]
+    pub ip_reachability: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(enumeration = "LsOspfRouteType", tag = "2")]
+    pub ospf_route_type: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsNodeNlri {
+    #[prost(message, optional, tag = "1")]
+    pub local_node: ::core::option::Option<LsNodeDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsLinkNlri {
+    #[prost(message, optional, tag = "1")]
+    pub local_node: ::core::option::Option<LsNodeDescriptor>,
+    #[prost(message, optional, tag = "2")]
+    pub remote_node: ::core::option::Option<LsNodeDescriptor>,
+    #[prost(message, optional, tag = "3")]
+    pub link_descriptor: ::core::option::Option<LsLinkDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsPrefixV4nlri {
+    #[prost(message, optional, tag = "1")]
+    pub local_node: ::core::option::Option<LsNodeDescriptor>,
+    #[prost(message, optional, tag = "2")]
+    pub prefix_descriptor: ::core::option::Option<LsPrefixDescriptor>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsPrefixV6nlri {
+    #[prost(message, optional, tag = "1")]
+    pub local_node: ::core::option::Option<LsNodeDescriptor>,
+    #[prost(message, optional, tag = "2")]
+    pub prefix_descriptor: ::core::option::Option<LsPrefixDescriptor>,
+}
+/// LsAddrPrefix represents the NLRI for:
+/// - AFI=16388, SAFI=71
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsAddrPrefix {
+    #[prost(enumeration = "LsNlriType", tag = "1")]
+    pub r#type: i32,
+    /// One of:
+    /// - LsNodeNLRI
+    /// - LsLinkNLRI
+    /// - LsPrefixV4NLRI
+    /// - LsPrefixV6NLRI
+    #[prost(message, optional, tag = "2")]
+    pub nlri: ::core::option::Option<::prost_types::Any>,
+    #[prost(uint32, tag = "3")]
+    pub length: u32,
+    #[prost(enumeration = "LsProtocolId", tag = "4")]
+    pub protocol_id: i32,
+    #[prost(uint64, tag = "5")]
+    pub identifier: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MupInterworkSegmentDiscoveryRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(string, tag = "2")]
+    pub prefix: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MupDirectSegmentDiscoveryRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(string, tag = "2")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MupType1SessionTransformedRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[deprecated]
+    #[prost(uint32, tag = "2")]
+    pub prefix_length: u32,
+    #[prost(string, tag = "3")]
+    pub prefix: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "4")]
+    pub teid: u32,
+    #[prost(uint32, tag = "5")]
+    pub qfi: u32,
+    #[prost(uint32, tag = "6")]
+    pub endpoint_address_length: u32,
+    #[prost(string, tag = "7")]
+    pub endpoint_address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MupType2SessionTransformedRoute {
+    /// One of:
+    /// - RouteDistinguisherTwoOctetASN
+    /// - RouteDistinguisherIPAddress
+    /// - RouteDistinguisherFourOctetASN
+    #[prost(message, optional, tag = "1")]
+    pub rd: ::core::option::Option<::prost_types::Any>,
+    #[prost(uint32, tag = "2")]
+    pub endpoint_address_length: u32,
+    #[prost(string, tag = "3")]
+    pub endpoint_address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "4")]
+    pub teid: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MpReachNlriAttribute {
+    #[prost(message, optional, tag = "1")]
+    pub family: ::core::option::Option<Family>,
+    #[prost(string, repeated, tag = "2")]
+    pub next_hops: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Each NLRI must be one of:
+    /// - IPAddressPrefix
+    /// - LabeledIPAddressPrefix
+    /// - EncapsulationNLRI
+    /// - EVPNEthernetAutoDiscoveryRoute
+    /// - EVPNMACIPAdvertisementRoute
+    /// - EVPNInclusiveMulticastEthernetTagRoute
+    /// - EVPNEthernetSegmentRoute
+    /// - EVPNIPPrefixRoute
+    /// - EVPNIPMSIRoute
+    /// - LabeledVPNIPAddressPrefix
+    /// - RouteTargetMembershipNLRI
+    /// - FlowSpecNLRI
+    /// - VPNFlowSpecNLRI
+    /// - OpaqueNLRI
+    /// - LsAddrPrefix
+    /// - SR Policy NLRI
+    /// - MUPInterworkSegmentDiscoveryRoute
+    /// - MUPDirectSegmentDiscoveryRoute
+    /// - MUPType1SessionTransformedRoute
+    /// - MUPType2SessionTransformedRoute
+    #[prost(message, repeated, tag = "3")]
+    pub nlris: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MpUnreachNlriAttribute {
+    #[prost(message, optional, tag = "1")]
+    pub family: ::core::option::Option<Family>,
+    /// The same as NLRI field of MpReachNLRIAttribute
+    #[prost(message, repeated, tag = "3")]
+    pub nlris: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TwoOctetAsSpecificExtended {
+    #[prost(bool, tag = "1")]
+    pub is_transitive: bool,
+    #[prost(uint32, tag = "2")]
+    pub sub_type: u32,
+    #[prost(uint32, tag = "3")]
+    pub asn: u32,
+    #[prost(uint32, tag = "4")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IPv4AddressSpecificExtended {
+    #[prost(bool, tag = "1")]
+    pub is_transitive: bool,
+    #[prost(uint32, tag = "2")]
+    pub sub_type: u32,
+    #[prost(string, tag = "3")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "4")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FourOctetAsSpecificExtended {
+    #[prost(bool, tag = "1")]
+    pub is_transitive: bool,
+    #[prost(uint32, tag = "2")]
+    pub sub_type: u32,
+    #[prost(uint32, tag = "3")]
+    pub asn: u32,
+    #[prost(uint32, tag = "4")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LinkBandwidthExtended {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(float, tag = "2")]
+    pub bandwidth: f32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ValidationExtended {
+    #[prost(uint32, tag = "1")]
+    pub state: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ColorExtended {
+    #[prost(uint32, tag = "1")]
+    pub color: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EncapExtended {
+    #[prost(uint32, tag = "1")]
+    pub tunnel_type: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DefaultGatewayExtended {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct OpaqueExtended {
+    #[prost(bool, tag = "1")]
+    pub is_transitive: bool,
+    #[prost(bytes = "vec", tag = "3")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EsiLabelExtended {
+    #[prost(bool, tag = "1")]
+    pub is_single_active: bool,
+    #[prost(uint32, tag = "2")]
+    pub label: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EsImportRouteTarget {
+    #[prost(string, tag = "1")]
+    pub es_import: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MacMobilityExtended {
+    #[prost(bool, tag = "1")]
+    pub is_sticky: bool,
+    #[prost(uint32, tag = "2")]
+    pub sequence_num: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RouterMacExtended {
+    #[prost(string, tag = "1")]
+    pub mac: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrafficRateExtended {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(float, tag = "2")]
+    pub rate: f32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrafficActionExtended {
+    #[prost(bool, tag = "1")]
+    pub terminal: bool,
+    #[prost(bool, tag = "2")]
+    pub sample: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedirectTwoOctetAsSpecificExtended {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(uint32, tag = "2")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedirectIPv4AddressSpecificExtended {
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "2")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedirectFourOctetAsSpecificExtended {
+    #[prost(uint32, tag = "1")]
+    pub asn: u32,
+    #[prost(uint32, tag = "2")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TrafficRemarkExtended {
+    #[prost(uint32, tag = "1")]
+    pub dscp: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MupExtended {
+    #[prost(uint32, tag = "1")]
+    pub sub_type: u32,
+    #[prost(uint32, tag = "2")]
+    pub segment_id2: u32,
+    #[prost(uint32, tag = "3")]
+    pub segment_id4: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UnknownExtended {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExtendedCommunitiesAttribute {
+    /// Each Community must be one of:
+    /// - TwoOctetAsSpecificExtended
+    /// - IPv4AddressSpecificExtended
+    /// - FourOctetAsSpecificExtended
+    /// - OpaqueExtended
+    /// - ESILabelExtended
+    /// - MacMobilityExtended
+    /// - RouterMacExtended
+    /// - TrafficRateExtended
+    /// - TrafficActionExtended
+    /// - RedirectTwoOctetAsSpecificExtended
+    /// - RedirectIPv4AddressSpecificExtended
+    /// - RedirectFourOctetAsSpecificExtended
+    /// - TrafficRemarkExtended
+    /// - MUPExtended
+    /// - UnknownExtended
+    #[prost(message, repeated, tag = "1")]
+    pub communities: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct As4PathAttribute {
+    #[prost(message, repeated, tag = "1")]
+    pub segments: ::prost::alloc::vec::Vec<AsSegment>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct As4AggregatorAttribute {
+    #[prost(uint32, tag = "2")]
+    pub asn: u32,
+    #[prost(string, tag = "3")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PmsiTunnelAttribute {
+    #[prost(uint32, tag = "1")]
+    pub flags: u32,
+    #[prost(uint32, tag = "2")]
+    pub r#type: u32,
+    #[prost(uint32, tag = "3")]
+    pub label: u32,
+    #[prost(bytes = "vec", tag = "4")]
+    pub id: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvEncapsulation {
+    #[prost(uint32, tag = "1")]
+    pub key: u32,
+    #[prost(bytes = "vec", tag = "2")]
+    pub cookie: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvProtocol {
+    #[prost(uint32, tag = "1")]
+    pub protocol: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvColor {
+    #[prost(uint32, tag = "1")]
+    pub color: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrPreference {
+    #[prost(uint32, tag = "1")]
+    pub flags: u32,
+    #[prost(uint32, tag = "2")]
+    pub preference: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrCandidatePathName {
+    #[prost(string, tag = "1")]
+    pub candidate_path_name: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrPriority {
+    #[prost(uint32, tag = "1")]
+    pub priority: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrBindingSid {
+    /// bsid must be one of:
+    /// - SRBindingSID
+    /// - SRv6BindingSID
+    #[prost(message, optional, tag = "1")]
+    pub bsid: ::core::option::Option<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SrBindingSid {
+    #[prost(bool, tag = "1")]
+    pub s_flag: bool,
+    #[prost(bool, tag = "2")]
+    pub i_flag: bool,
+    #[prost(bytes = "vec", tag = "3")]
+    pub sid: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6EndPointBehavior {
+    #[prost(enumeration = "SRv6Behavior", tag = "1")]
+    pub behavior: i32,
+    #[prost(uint32, tag = "2")]
+    pub block_len: u32,
+    #[prost(uint32, tag = "3")]
+    pub node_len: u32,
+    #[prost(uint32, tag = "4")]
+    pub func_len: u32,
+    #[prost(uint32, tag = "5")]
+    pub arg_len: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6BindingSid {
+    #[prost(bool, tag = "1")]
+    pub s_flag: bool,
+    #[prost(bool, tag = "2")]
+    pub i_flag: bool,
+    #[prost(bool, tag = "3")]
+    pub b_flag: bool,
+    #[prost(bytes = "vec", tag = "4")]
+    pub sid: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "5")]
+    pub endpoint_behavior_structure: ::core::option::Option<SRv6EndPointBehavior>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrenlp {
+    #[prost(uint32, tag = "1")]
+    pub flags: u32,
+    #[prost(enumeration = "EnlpType", tag = "2")]
+    pub enlp: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SrWeight {
+    #[prost(uint32, tag = "1")]
+    pub flags: u32,
+    #[prost(uint32, tag = "2")]
+    pub weight: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SegmentFlags {
+    #[prost(bool, tag = "1")]
+    pub v_flag: bool,
+    #[prost(bool, tag = "2")]
+    pub a_flag: bool,
+    #[prost(bool, tag = "3")]
+    pub s_flag: bool,
+    #[prost(bool, tag = "4")]
+    pub b_flag: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SegmentTypeA {
+    #[prost(message, optional, tag = "1")]
+    pub flags: ::core::option::Option<SegmentFlags>,
+    #[prost(uint32, tag = "2")]
+    pub label: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SegmentTypeB {
+    #[prost(message, optional, tag = "1")]
+    pub flags: ::core::option::Option<SegmentFlags>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub sid: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "3")]
+    pub endpoint_behavior_structure: ::core::option::Option<SRv6EndPointBehavior>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvsrSegmentList {
+    #[prost(message, optional, tag = "1")]
+    pub weight: ::core::option::Option<SrWeight>,
+    /// segments must be one of:
+    /// - SegmentTypeA
+    /// - SegmentTypeB
+    #[prost(message, repeated, tag = "2")]
+    pub segments: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvEgressEndpoint {
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvudpDestPort {
+    #[prost(uint32, tag = "1")]
+    pub port: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapSubTlvUnknown {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapTlv {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    /// Each TLV must be one of:
+    /// - TunnelEncapSubTLVEncapsulation
+    /// - TunnelEncapSubTLVProtocol
+    /// - TunnelEncapSubTLVColor
+    /// - TunnelEncapSubTLVSRPolicy
+    /// - TunnelEncapSubTLVUnknown
+    #[prost(message, repeated, tag = "2")]
+    pub tlvs: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct TunnelEncapAttribute {
+    #[prost(message, repeated, tag = "1")]
+    pub tlvs: ::prost::alloc::vec::Vec<TunnelEncapTlv>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IPv6AddressSpecificExtended {
+    #[prost(bool, tag = "1")]
+    pub is_transitive: bool,
+    #[prost(uint32, tag = "2")]
+    pub sub_type: u32,
+    #[prost(string, tag = "3")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "4")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RedirectIPv6AddressSpecificExtended {
+    #[prost(string, tag = "1")]
+    pub address: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "2")]
+    pub local_admin: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Ip6ExtendedCommunitiesAttribute {
+    /// Each Community must be one of:
+    /// - IPv6AddressSpecificExtended
+    /// - RedirectIPv6AddressSpecificExtended
+    #[prost(message, repeated, tag = "1")]
+    pub communities: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AigpTlvigpMetric {
+    #[prost(uint64, tag = "1")]
+    pub metric: u64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AigpTlvUnknown {
+    #[prost(uint32, tag = "1")]
+    pub r#type: u32,
+    #[prost(bytes = "vec", tag = "2")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AigpAttribute {
+    /// Each TLV must be one of:
+    /// - AigpTLVIGPMetric
+    /// - AigpTLVUnknown
+    #[prost(message, repeated, tag = "1")]
+    pub tlvs: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LargeCommunity {
+    #[prost(uint32, tag = "1")]
+    pub global_admin: u32,
+    #[prost(uint32, tag = "2")]
+    pub local_data1: u32,
+    #[prost(uint32, tag = "3")]
+    pub local_data2: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LargeCommunitiesAttribute {
+    #[prost(message, repeated, tag = "1")]
+    pub communities: ::prost::alloc::vec::Vec<LargeCommunity>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsNodeFlags {
+    #[prost(bool, tag = "1")]
+    pub overload: bool,
+    #[prost(bool, tag = "2")]
+    pub attached: bool,
+    #[prost(bool, tag = "3")]
+    pub external: bool,
+    #[prost(bool, tag = "4")]
+    pub abr: bool,
+    #[prost(bool, tag = "5")]
+    pub router: bool,
+    #[prost(bool, tag = "6")]
+    pub v6: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsIgpFlags {
+    #[prost(bool, tag = "1")]
+    pub down: bool,
+    #[prost(bool, tag = "2")]
+    pub no_unicast: bool,
+    #[prost(bool, tag = "3")]
+    pub local_address: bool,
+    #[prost(bool, tag = "4")]
+    pub propagate_nssa: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsSrRange {
+    #[prost(uint32, tag = "1")]
+    pub begin: u32,
+    #[prost(uint32, tag = "2")]
+    pub end: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsSrCapabilities {
+    #[prost(bool, tag = "1")]
+    pub ipv4_supported: bool,
+    #[prost(bool, tag = "2")]
+    pub ipv6_supported: bool,
+    #[prost(message, repeated, tag = "3")]
+    pub ranges: ::prost::alloc::vec::Vec<LsSrRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsSrLocalBlock {
+    #[prost(message, repeated, tag = "1")]
+    pub ranges: ::prost::alloc::vec::Vec<LsSrRange>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsAttributeNode {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub flags: ::core::option::Option<LsNodeFlags>,
+    #[prost(string, tag = "3")]
+    pub local_router_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub local_router_id_v6: ::prost::alloc::string::String,
+    #[prost(bytes = "vec", tag = "5")]
+    pub isis_area: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes = "vec", tag = "6")]
+    pub opaque: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "7")]
+    pub sr_capabilities: ::core::option::Option<LsSrCapabilities>,
+    #[prost(bytes = "vec", tag = "8")]
+    pub sr_algorithms: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "9")]
+    pub sr_local_block: ::core::option::Option<LsSrLocalBlock>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsAttributeLink {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub local_router_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub local_router_id_v6: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub remote_router_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub remote_router_id_v6: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "6")]
+    pub admin_group: u32,
+    #[prost(uint32, tag = "7")]
+    pub default_te_metric: u32,
+    #[prost(uint32, tag = "8")]
+    pub igp_metric: u32,
+    #[prost(bytes = "vec", tag = "9")]
+    pub opaque: ::prost::alloc::vec::Vec<u8>,
+    #[prost(float, tag = "10")]
+    pub bandwidth: f32,
+    #[prost(float, tag = "11")]
+    pub reservable_bandwidth: f32,
+    #[prost(float, repeated, tag = "12")]
+    pub unreserved_bandwidth: ::prost::alloc::vec::Vec<f32>,
+    #[prost(uint32, tag = "13")]
+    pub sr_adjacency_sid: u32,
+    #[prost(uint32, repeated, tag = "14")]
+    pub srlgs: ::prost::alloc::vec::Vec<u32>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsAttributePrefix {
+    #[prost(message, optional, tag = "1")]
+    pub igp_flags: ::core::option::Option<LsIgpFlags>,
+    #[prost(bytes = "vec", tag = "2")]
+    pub opaque: ::prost::alloc::vec::Vec<u8>,
+    #[prost(uint32, tag = "3")]
+    pub sr_prefix_sid: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LsAttribute {
+    #[prost(message, optional, tag = "1")]
+    pub node: ::core::option::Option<LsAttributeNode>,
+    #[prost(message, optional, tag = "2")]
+    pub link: ::core::option::Option<LsAttributeLink>,
+    #[prost(message, optional, tag = "3")]
+    pub prefix: ::core::option::Option<LsAttributePrefix>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UnknownAttribute {
+    #[prost(uint32, tag = "1")]
+    pub flags: u32,
+    #[prost(uint32, tag = "2")]
+    pub r#type: u32,
+    #[prost(bytes = "vec", tag = "3")]
+    pub value: ::prost::alloc::vec::Vec<u8>,
+}
+/// <https://www.rfc-editor.org/rfc/rfc9252.html#section-3.2.1>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6StructureSubSubTlv {
+    #[prost(uint32, tag = "1")]
+    pub locator_block_length: u32,
+    #[prost(uint32, tag = "2")]
+    pub locator_node_length: u32,
+    #[prost(uint32, tag = "3")]
+    pub function_length: u32,
+    #[prost(uint32, tag = "4")]
+    pub argument_length: u32,
+    #[prost(uint32, tag = "5")]
+    pub transposition_length: u32,
+    #[prost(uint32, tag = "6")]
+    pub transposition_offset: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6SidFlags {
+    /// Placeholder for future sid flags
+    #[prost(bool, tag = "1")]
+    pub flag_1: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6Tlv {
+    #[prost(message, repeated, tag = "1")]
+    pub tlv: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+/// <https://tools.ietf.org/html/draft-dawra-bess-srv6-services-02#section-2.1.1>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6InformationSubTlv {
+    #[prost(bytes = "vec", tag = "1")]
+    pub sid: ::prost::alloc::vec::Vec<u8>,
+    #[prost(message, optional, tag = "2")]
+    pub flags: ::core::option::Option<SRv6SidFlags>,
+    #[prost(uint32, tag = "3")]
+    pub endpoint_behavior: u32,
+    /// SRv6TLV is one of:
+    /// - SRv6StructureSubSubTLV
+    #[prost(map = "uint32, message", tag = "4")]
+    pub sub_sub_tlvs: ::std::collections::HashMap<u32, SRv6Tlv>,
+}
+/// <https://www.rfc-editor.org/rfc/rfc9252.html#section-2>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6L3ServiceTlv {
+    /// SRv6TLV is one of:
+    /// - SRv6InformationSubTLV
+    #[prost(map = "uint32, message", tag = "1")]
+    pub sub_tlvs: ::std::collections::HashMap<u32, SRv6Tlv>,
+}
+/// <https://www.rfc-editor.org/rfc/rfc9252.html#section-2>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SRv6L2ServiceTlv {
+    /// SRv6TLV is one of:
+    /// - SRv6InformationSubTLV
+    #[prost(map = "uint32, message", tag = "1")]
+    pub sub_tlvs: ::std::collections::HashMap<u32, SRv6Tlv>,
+}
+/// <https://tools.ietf.org/html/rfc8669>
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PrefixSid {
+    /// tlv is one of:
+    /// - IndexLabelTLV Type 1 (not yet implemented)
+    /// - OriginatorSRGBTLV Type 3 (not yet implemented)
+    /// - SRv6L3ServiceTLV Type 5
+    /// - SRv6L2ServiceTLV Type 6
+    #[prost(message, repeated, tag = "1")]
+    pub tlvs: ::prost::alloc::vec::Vec<::prost_types::Any>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LsOspfRouteType {
+    Unknown = 0,
+    IntraArea = 1,
+    InterArea = 2,
+    External1 = 3,
+    External2 = 4,
+    Nssa1 = 5,
+    Nssa2 = 6,
+}
+impl LsOspfRouteType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LsOspfRouteType::Unknown => "LS_OSPF_ROUTE_TYPE_UNKNOWN",
+            LsOspfRouteType::IntraArea => "LS_OSPF_ROUTE_TYPE_INTRA_AREA",
+            LsOspfRouteType::InterArea => "LS_OSPF_ROUTE_TYPE_INTER_AREA",
+            LsOspfRouteType::External1 => "LS_OSPF_ROUTE_TYPE_EXTERNAL1",
+            LsOspfRouteType::External2 => "LS_OSPF_ROUTE_TYPE_EXTERNAL2",
+            LsOspfRouteType::Nssa1 => "LS_OSPF_ROUTE_TYPE_NSSA1",
+            LsOspfRouteType::Nssa2 => "LS_OSPF_ROUTE_TYPE_NSSA2",
+        }
+    }
+}
+/// Based om RFC 7752, Table 1.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LsNlriType {
+    LsNlriUnknown = 0,
+    LsNlriNode = 1,
+    LsNlriLink = 2,
+    LsNlriPrefixV4 = 3,
+    LsNlriPrefixV6 = 4,
+}
+impl LsNlriType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LsNlriType::LsNlriUnknown => "LS_NLRI_UNKNOWN",
+            LsNlriType::LsNlriNode => "LS_NLRI_NODE",
+            LsNlriType::LsNlriLink => "LS_NLRI_LINK",
+            LsNlriType::LsNlriPrefixV4 => "LS_NLRI_PREFIX_V4",
+            LsNlriType::LsNlriPrefixV6 => "LS_NLRI_PREFIX_V6",
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum LsProtocolId {
+    LsProtocolUnknown = 0,
+    LsProtocolIsisL1 = 1,
+    LsProtocolIsisL2 = 2,
+    LsProtocolOspfV2 = 3,
+    LsProtocolDirect = 4,
+    LsProtocolStatic = 5,
+    LsProtocolOspfV3 = 6,
+}
+impl LsProtocolId {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            LsProtocolId::LsProtocolUnknown => "LS_PROTOCOL_UNKNOWN",
+            LsProtocolId::LsProtocolIsisL1 => "LS_PROTOCOL_ISIS_L1",
+            LsProtocolId::LsProtocolIsisL2 => "LS_PROTOCOL_ISIS_L2",
+            LsProtocolId::LsProtocolOspfV2 => "LS_PROTOCOL_OSPF_V2",
+            LsProtocolId::LsProtocolDirect => "LS_PROTOCOL_DIRECT",
+            LsProtocolId::LsProtocolStatic => "LS_PROTOCOL_STATIC",
+            LsProtocolId::LsProtocolOspfV3 => "LS_PROTOCOL_OSPF_V3",
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum SRv6Behavior {
+    Reserved = 0,
+    End = 1,
+    EndWithPsp = 2,
+    EndWithUsp = 3,
+    EndWithPspUsp = 4,
+    Endx = 5,
+    EndxWithPsp = 6,
+    EndxWithUsp = 7,
+    EndxWithPspUsp = 8,
+    Endt = 9,
+    EndtWithPsp = 10,
+    EndtWithUsp = 11,
+    EndtWithPspUsp = 12,
+    EndB6Encaps = 14,
+    EndBm = 15,
+    EndDx6 = 16,
+    EndDx4 = 17,
+    EndDt6 = 18,
+    EndDt4 = 19,
+    EndDt46 = 20,
+    EndDx2 = 21,
+    EndDx2v = 22,
+    EndDt2u = 23,
+    EndDt2m = 24,
+    EndB6EncapsRed = 27,
+    EndWithUsd = 28,
+    EndWithPspUsd = 29,
+    EndWithUspUsd = 30,
+    EndWithPspUspUsd = 31,
+    EndxWithUsd = 32,
+    EndxWithPspUsd = 33,
+    EndxWithUspUsd = 34,
+    EndxWithPspUspUsd = 35,
+    EndtWithUsd = 36,
+    EndtWithPspUsd = 37,
+    EndtWithUspUsd = 38,
+    EndtWithPspUspUsd = 39,
+    /// 0x0045
+    EndmGtp6d = 69,
+    /// 0x0046
+    EndmGtp6di = 70,
+    /// 0x0047
+    EndmGtp6e = 71,
+    /// 0x0048
+    EndmGtp4e = 72,
+}
+impl SRv6Behavior {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            SRv6Behavior::Reserved => "RESERVED",
+            SRv6Behavior::End => "END",
+            SRv6Behavior::EndWithPsp => "END_WITH_PSP",
+            SRv6Behavior::EndWithUsp => "END_WITH_USP",
+            SRv6Behavior::EndWithPspUsp => "END_WITH_PSP_USP",
+            SRv6Behavior::Endx => "ENDX",
+            SRv6Behavior::EndxWithPsp => "ENDX_WITH_PSP",
+            SRv6Behavior::EndxWithUsp => "ENDX_WITH_USP",
+            SRv6Behavior::EndxWithPspUsp => "ENDX_WITH_PSP_USP",
+            SRv6Behavior::Endt => "ENDT",
+            SRv6Behavior::EndtWithPsp => "ENDT_WITH_PSP",
+            SRv6Behavior::EndtWithUsp => "ENDT_WITH_USP",
+            SRv6Behavior::EndtWithPspUsp => "ENDT_WITH_PSP_USP",
+            SRv6Behavior::EndB6Encaps => "END_B6_ENCAPS",
+            SRv6Behavior::EndBm => "END_BM",
+            SRv6Behavior::EndDx6 => "END_DX6",
+            SRv6Behavior::EndDx4 => "END_DX4",
+            SRv6Behavior::EndDt6 => "END_DT6",
+            SRv6Behavior::EndDt4 => "END_DT4",
+            SRv6Behavior::EndDt46 => "END_DT46",
+            SRv6Behavior::EndDx2 => "END_DX2",
+            SRv6Behavior::EndDx2v => "END_DX2V",
+            SRv6Behavior::EndDt2u => "END_DT2U",
+            SRv6Behavior::EndDt2m => "END_DT2M",
+            SRv6Behavior::EndB6EncapsRed => "END_B6_ENCAPS_Red",
+            SRv6Behavior::EndWithUsd => "END_WITH_USD",
+            SRv6Behavior::EndWithPspUsd => "END_WITH_PSP_USD",
+            SRv6Behavior::EndWithUspUsd => "END_WITH_USP_USD",
+            SRv6Behavior::EndWithPspUspUsd => "END_WITH_PSP_USP_USD",
+            SRv6Behavior::EndxWithUsd => "ENDX_WITH_USD",
+            SRv6Behavior::EndxWithPspUsd => "ENDX_WITH_PSP_USD",
+            SRv6Behavior::EndxWithUspUsd => "ENDX_WITH_USP_USD",
+            SRv6Behavior::EndxWithPspUspUsd => "ENDX_WITH_PSP_USP_USD",
+            SRv6Behavior::EndtWithUsd => "ENDT_WITH_USD",
+            SRv6Behavior::EndtWithPspUsd => "ENDT_WITH_PSP_USD",
+            SRv6Behavior::EndtWithUspUsd => "ENDT_WITH_USP_USD",
+            SRv6Behavior::EndtWithPspUspUsd => "ENDT_WITH_PSP_USP_USD",
+            SRv6Behavior::EndmGtp6d => "ENDM_GTP6D",
+            SRv6Behavior::EndmGtp6di => "ENDM_GTP6DI",
+            SRv6Behavior::EndmGtp6e => "ENDM_GTP6E",
+            SRv6Behavior::EndmGtp4e => "ENDM_GTP4E",
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum EnlpType {
+    Reserved = 0,
+    Type1 = 1,
+    Type2 = 2,
+    Type3 = 3,
+    Type4 = 4,
+}
+impl EnlpType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            EnlpType::Reserved => "Reserved",
+            EnlpType::Type1 => "Type1",
+            EnlpType::Type2 => "Type2",
+            EnlpType::Type3 => "Type3",
+            EnlpType::Type4 => "Type4",
+        }
+    }
+}
