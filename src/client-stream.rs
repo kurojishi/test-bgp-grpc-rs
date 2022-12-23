@@ -9,7 +9,10 @@ use gobgp::{
 use std::time::SystemTime;
 use tonic::Request;
 
-use futures_util::stream;
+use tokio::time::sleep;
+use tokio::sync::mpsc;
+use tokio_stream::wrappers::ReceiverStream;
+
 
 const TYPE_URL_PREFACE: &str = "type.googleapis.com/apipb";
 
@@ -100,11 +103,28 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             paths: prost::alloc::vec![path],
             vrf_id: String::new(),
         };
-        requests.push(request);
     }
 
+        let last_request = AddPathStreamRequest {
+            table_type: TableType::Global as i32,
+            paths: prost::alloc::vec![create_path("10.10.10.10")],
+            vrf_id: String::new(),
+        };
+
+    let (tx, rx) = mpsc::channel(4);
+        tokio::spawn(async move {
+            sleep(std::time::Duration::from_secs(2));
+            for r in requests.iter() {
+                    println!("  => send {:#?}", r);
+                    tx.send(r).await.unwrap();
+                }
+
+            println!(" /// done sending");
+        });
+
+    let stream = ReceiverStream::new(rx);
     match client
-        .add_path_stream(Request::new(stream::iter(requests)))
+        .add_path_stream(Request::new(stream))
         .await
     {
         Ok(response) => {
@@ -113,6 +133,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             },
         Err(err) => panic!("ERROR = {:#?}", err),
     };
+
+
 
     Ok(())
 }
