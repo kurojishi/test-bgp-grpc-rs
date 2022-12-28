@@ -1,5 +1,6 @@
-#[path = "./gobgp/apipb.rs"]
-pub mod gobgp;
+pub mod gobgp {
+    tonic::include_proto!{"apipb"}
+}
 use gobgp::gobgp_api_client::GobgpApiClient;
 use gobgp::{
     family, AddPathStreamRequest, ExtendedCommunitiesAttribute, Family, FlowSpecIpPrefix,
@@ -102,12 +103,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             paths: prost::alloc::vec![path],
             vrf_id: String::new(),
         };
+        requests.push(request);
     }
 
     let (tx, rx) = mpsc::channel(4);
     tokio::spawn(async move {
-        sleep(std::time::Duration::from_secs(2));
-        for r in requests.iter() {
+        sleep(std::time::Duration::from_secs(2)).await;
+        for r in requests {
             println!("  => send {:#?}", r);
             tx.send(r).await.unwrap();
         }

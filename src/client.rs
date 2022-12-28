@@ -1,5 +1,6 @@
-#[path = "./gobgp/apipb.rs"]
-pub mod gobgp;
+pub mod gobgp {
+    tonic::include_proto!{"apipb"}
+}
 use gobgp::gobgp_api_client::GobgpApiClient;
 use gobgp::{
     family, AddPathRequest, ExtendedCommunitiesAttribute, Family, FlowSpecIpPrefix, FlowSpecNlri,
