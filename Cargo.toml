@@ -7,11 +7,12 @@ edition = "2021"
 
 [dependencies]
 futures-util = "0.3.25"
+ipnet = "2.7.0"
 prost = "0.11.3"
 prost-types = "0.11.2"
 protobuf = "3.2.0"
-tokio = { version = "1.23.0", features = ["rt-multi-thread"] }
-tokio-stream = "0.1.11"
+tokio = { version = "1.23.0", features = ["rt-multi-thread", "fs", "io-util"] }
+tokio-stream = { version = "0.1.11", features = ["io-util"] }
 tonic = { version = "0.8.3", features = ["transport", "channel"] }
 
 [build-dependencies]

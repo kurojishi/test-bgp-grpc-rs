@@ -1,5 +1,5 @@
 pub mod gobgp {
-    tonic::include_proto!{"apipb"}
+    tonic::include_proto! {"apipb"}
 }
 use gobgp::gobgp_api_client::GobgpApiClient;
 use gobgp::{
@@ -9,10 +9,14 @@ use gobgp::{
 };
 use std::time::SystemTime;
 use tonic::Request;
+use std::time::Instant;
 
+use std::fs::File;
+use std::str::FromStr;
+use std::io::{BufRead, BufReader};
 use tokio::sync::mpsc;
-use tokio::time::sleep;
 use tokio_stream::wrappers::ReceiverStream;
+use ipnet::Ipv4Net;
 
 const TYPE_URL_PREFACE: &str = "type.googleapis.com/apipb";
 
@@ -90,41 +94,48 @@ fn create_path(ip: &str) -> Path {
     }
 }
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut client = GobgpApiClient::connect("http://127.0.0.1:50051").await?;
-    let ips = vec!["10.6.2.1", "10.5.3.2"];
+fn generate_ip_set_from_file(
+    ipfile: File,
+) -> Result<Vec<AddPathStreamRequest>, Box<dyn std::error::Error>> {
     let mut requests = vec![];
-    for ip in ips.iter() {
-        let path = create_path(ip);
-
+    let lines = BufReader::new(ipfile).lines();
+    println!("Mapping");
+    for net in lines {
+        let network = Ipv4Net::from_str(&(net?))?;
         let request = AddPathStreamRequest {
             table_type: TableType::Global as i32,
-            paths: prost::alloc::vec![path],
+            paths: Vec::from_iter(network.hosts().map(|ip| create_path(&ip.to_string()))),
             vrf_id: String::new(),
         };
         requests.push(request);
-    }
+    };
+
+    Ok(requests)
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let mut client = GobgpApiClient::connect("http://127.0.0.1:50051").await?;
 
     let (tx, rx) = mpsc::channel(4);
     tokio::spawn(async move {
-        sleep(std::time::Duration::from_secs(2)).await;
+        let requests = generate_ip_set_from_file(File::open("freespace-prefix.txt").unwrap()).unwrap();
         for r in requests {
-            println!("  => send {:#?}", r);
             tx.send(r).await.unwrap();
         }
 
-        println!(" /// done sending");
     });
 
     let stream = ReceiverStream::new(rx);
+
+    println!("Sending");
+    let start = Instant::now();
     match client.add_path_stream(Request::new(stream)).await {
         Ok(response) => {
-            println!("NOTE = {:#?}", response);
             response.into_inner()
         }
         Err(err) => panic!("ERROR = {:#?}", err),
     };
-
+    println!("Time elapsed in sending messages is: {:?}", start.elapsed());
     Ok(())
 }
