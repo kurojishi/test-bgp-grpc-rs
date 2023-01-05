@@ -48,7 +48,7 @@ fn create_path(ip: &str) -> Path {
                 FlowSpecIpPrefix {
                     r#type: 2, //type 2 is source prefix
                     prefix: ip.to_string(),
-                    prefix_len: 24,
+                    prefix_len: 32,
                     offset: 0,
                 },
                 "FlowSpecIPPrefix"
